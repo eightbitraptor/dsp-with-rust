@@ -2,3 +2,6 @@
 name = "dsp-with-rust"
 version = "0.1.0"
 authors = ["Matt Valentine-House <matt@eightbitraptor.com>"]
+
+[dependencies]
+hound   = "1.0.0"
