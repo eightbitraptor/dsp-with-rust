@@ -15,20 +15,29 @@ fn write_sine_wav() {
     let normalized_sample_indices = (0 .. no_of_samples).
         map(|x| x as f32 / sampling_freq as f32);
 
-
     let spec = hound::WavSpec {
         channels: 1,
         sample_rate: sampling_freq,
         bits_per_sample: sampling_bits
     };
 
-    let mut writer = hound::WavWriter::create("sine.wav", spec).unwrap();
-    for t in normalized_sample_indices {
-        let sample = (t * note_freq * 2.0 * PI).sin();
-        writer.write_sample((sample * amplitude) as i16).unwrap();
-    }
-}
+    let maybe_writer = hound::WavWriter::create("sine.wav", spec);
 
+    match maybe_writer {
+        Ok(writer_obj) => {
+            let mut writer = writer_obj;
+            for t in normalized_sample_indices {
+                let sample = (t * note_freq * 2.0 * PI).sin();
+                writer.write_sample((sample * amplitude) as i16).unwrap();
+            }
+        },
+        Err(e) => {
+            println!("Oh Noes!");
+            println!("{}", e);
+        }
+    }
+
+}
 
 fn main() {
     write_sine_wav();
