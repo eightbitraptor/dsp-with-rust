@@ -2,8 +2,14 @@
 name = "dsp-with-rust"
 version = "0.1.0"
 dependencies = [
+ "gnuplot 0.0.17 (registry+https://github.com/rust-lang/crates.io-index)",
  "hound 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "gnuplot"
+version = "0.0.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "hound"
